@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Flip Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 30px;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-face.front {
+            transform: rotateY(0deg);
+        }
+
+        .card-face.back {
+            transform: rotateY(180deg);
+        }
+
+        /* Card 1: Red front, Green back */
+        .card-1 .front {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .card-1 .back {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        }
+
+        /* Card 2: Green front, Red back */
+        .card-2 .front {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        }
+
+        .card-2 .back {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .flip-button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .flip-button:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .flip-button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .flip-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 600px) {
+            .cards-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Card Flip Demo</h1>
+
+        <div class="cards-container">
+            <div class="card card-1" id="card1">
+                <div class="card-face front">RED</div>
+                <div class="card-face back">GREEN</div>
+            </div>
+
+            <div class="card card-2" id="card2">
+                <div class="card-face front">GREEN</div>
+                <div class="card-face back">RED</div>
+            </div>
+        </div>
+
+        <button class="flip-button" id="flipButton">Flip Cards</button>
+    </div>
+
+    <script>
+        const card1 = document.getElementById('card1');
+        const card2 = document.getElementById('card2');
+        const flipButton = document.getElementById('flipButton');
+        let isFlipping = false;
+
+        flipButton.addEventListener('click', () => {
+            // Prevent multiple clicks during animation
+            if (isFlipping) return;
+
+            isFlipping = true;
+            flipButton.disabled = true;
+
+            // Toggle flip class on both cards
+            card1.classList.toggle('flipped');
+            card2.classList.toggle('flipped');
+
+            // Re-enable button after animation completes
+            setTimeout(() => {
+                isFlipping = false;
+                flipButton.disabled = false;
+            }, 600); // Match the CSS transition duration
+        });
+    </script>
+</body>
+</html>

@@ -1,23 +1,37 @@
-# Sandbox
+# Card Flip Demo
 
-A sandbox repository for testing and experimentation.
+A simple, fun web application featuring two cards that flip and swap colors with a smooth 3D animation.
 
-## Overview
+## Description
 
-This repository serves as a testing environment for various development workflows, integrations, and experiments.
+This demo application displays two cards side-by-side (red and green). When you click the "Flip Cards" button, both cards perform a 3D flip animation and swap their colors. The left card changes from red to green, while the right card changes from green to red.
 
-## Usage
+## Features
 
-This is a sandbox environment. Feel free to:
-- Test new features
-- Experiment with different workflows
-- Try out GitHub integrations
-- Practice git operations
+- Two cards displayed horizontally
+- Smooth 3D flip animation
+- Color swap on each flip (red ↔ green)
+- Responsive design (works on mobile and desktop)
+- No external dependencies - pure vanilla HTML/CSS/JavaScript
 
-## Contributing
+## How to Run
 
-As this is a sandbox repository, contributions follow a flexible approach. Feel free to experiment and test various development practices.
+1. Open `index.html` in any modern web browser
+2. Click the "Flip Cards" button to see the animation
+3. Click repeatedly to keep flipping the cards
 
-## License
+## Technology Stack
 
-This is a sandbox project for testing purposes.
+- HTML5
+- CSS3 (with 3D transforms and transitions)
+- Vanilla JavaScript
+
+## Browser Compatibility
+
+Works in all modern browsers that support CSS 3D transforms:
+- Chrome
+- Firefox
+- Safari
+- Edge
+
+Enjoy the demo!
